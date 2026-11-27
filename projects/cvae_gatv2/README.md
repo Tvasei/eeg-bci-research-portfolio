@@ -28,7 +28,7 @@ I also tested whether a separate classifier could still identify the source coho
 
 [![Electrode-occlusion scalp map beside an interval plot of the change in classification confidence at individual electrodes.](../../assets/figures/cvae-occlusion.png)](../../assets/figures/cvae-occlusion.png)
 
-*Manuscript Figure 3. Masking one electrode at a time measures model sensitivity. The intervals quantify variation across resampled participants. The scalp layout shows electrode positions.*
+*Electrode occlusion. Masking one electrode at a time measures model sensitivity. The intervals quantify variation across resampled participants. The scalp layout shows electrode positions.*
 
 ## Reproducibility
 
