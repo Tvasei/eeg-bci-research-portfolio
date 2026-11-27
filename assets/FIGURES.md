@@ -26,4 +26,10 @@ Tahereh Vasei, Maryam Ravan and Gary Hasey. *Reference-conditioned CVAE harmoniz
 - [Figure 2, p. 42](figures/cvae-umap.png) compares UMAP projections of EEG before and after harmonization and of the classifier embeddings. The rows color the observations by source cohort or diagnosis.
 - [Figure 3, p. 47](figures/cvae-occlusion.png) shows the confidence change after masking each electrode, together with subject-bootstrap intervals. The [scalp map](figures/cvae-scalp.png) is panel (a) of the same figure and appears on the portfolio cover.
 
-The license of the published IET paper applies to its three figures. The two author manuscripts retain their own rights.
+## Brain responses to electroacupuncture (TEAS)
+
+Tahereh Vasei, Harshil Gediya, Maryam Ravan, Anand Santhanakrishnan, David Mayor and Tony Steffert. *Investigating Brain Responses to Transcutaneous Electroacupuncture Stimulation: A Deep Learning Approach*. Algorithms, 2024, article 477. © 2024 the authors. The published figure is reproduced under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). [Paper and original figure](https://doi.org/10.3390/a17110477)
+
+- [Figure 5, p. 15](figures/teas-saliency.png) shows topographic distributions of aggregated saliency maps for the four TEAS frequencies (2.5, 10, 80, and sham 160 pps). Warmer colors indicate higher electrode importance.
+
+The licenses of the published IET and Algorithms papers apply to their figures. The two author manuscripts retain their own rights.
