@@ -2,7 +2,7 @@
 
 # Figure sources
 
-The figures were cropped from the research papers and rendered as PNGs. Axis scales, units, legends and data marks follow the source figures. The portfolio cover uses a single labeled panel from the electrode-occlusion figure.
+The figures were cropped from the research papers and rendered as PNGs. Axis scales, units, legends and data marks follow the source figures. The portfolio cover is a title card.
 
 ## Wearable motor-imagery BCI
 
@@ -24,7 +24,7 @@ Tahereh Vasei, Maryam Ravan and Gary Hasey. *ACCA: Asymmetric ComBat–CORAL ali
 Tahereh Vasei, Maryam Ravan and Gary Hasey. *Reference-conditioned CVAE harmonization with graph attention for multi-cohort resting-state EEG classification of major depressive disorder*. Revised author manuscript. Figures are credited to the manuscript authors.
 
 - [Figure 2, p. 42](figures/cvae-umap.png) compares UMAP projections of EEG before and after harmonization and of the classifier embeddings. The rows color the observations by source cohort or diagnosis.
-- [Figure 3, p. 47](figures/cvae-occlusion.png) shows the confidence change after masking each electrode, together with subject-bootstrap intervals. The [scalp map](figures/cvae-scalp.png) is panel (a) of the same figure and appears on the portfolio cover.
+- [Figure 3, p. 47](figures/cvae-occlusion.png) shows the confidence change after masking each electrode, together with subject-bootstrap intervals. The [scalp map](figures/cvae-scalp.png) is panel (a) of the same figure and appears in the cohort study section.
 
 ## Brain responses to electroacupuncture (TEAS)
 
