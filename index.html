@@ -204,11 +204,21 @@
     </div>
     <details><summary>What can I reproduce from this release?</summary><p class="caption">Reproducing the study metrics requires the original training pipeline, the frozen CVAE, and the clinical recordings, which are outside this release.</p></details>
   </article>
+  <article class="study" id="teas" aria-labelledby="teas-title">
+    <div class="study-head">
+      <div><p class="meta">Interpretability · Published in Algorithms, 2024</p><h2 id="teas-title">Reading brain responses to electroacupuncture</h2></div>
+      <p class="study-desc">EEGNet decoded the stimulation phases of 48 participants receiving transcutaneous electroacupuncture (TEAS) with accuracies above 92%. I used saliency maps to ask where on the scalp the decision came from.</p>
+    </div>
+    <figure><a class="media" href="assets/figures/teas-saliency.png" data-figure><img src="assets/figures/teas-saliency.png" loading="lazy" alt="Topographic saliency maps for four TEAS frequencies, with frontal electrodes Fp1 and Fp2 showing the highest importance."></a><figcaption class="caption"><strong>Figure 5 · Saliency topographies.</strong> Aggregated saliency for each stimulation frequency. In every condition, importance concentrates at the front of the scalp.</figcaption></figure>
+    <p class="finding">Seven electrodes — <strong>Fp1, Fp2, Fz, F7, F8, T3, T4</strong> — carried the highest saliency, and a classifier retrained on those seven performed close to the full <strong>19-electrode</strong> montage.</p>
+    <div class="study-links"><a class="case-link" href="https://doi.org/10.3390/a17110477">Read the published paper</a></div>
+  </article>
 </main>
 <footer>
   <div class="shell"><div><p class="foot-brand">Tahereh Vasei</p><p>Research in EEG decoding and wearable computing</p></div><div>
     <p>BCI figures © 2024 Vasei, Saber, Nahvy &amp; Navabi, reproduced from the <a href="https://doi.org/10.1049/2024/5596468">open paper</a> under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Figures cropped to fit.</p>
     <p>Dry/gel and CVAE figures from manuscripts by Tahereh Vasei, Maryam Ravan &amp; Gary Hasey.</p>
+    <p>TEAS saliency figure © 2024 Vasei, Gediya, Ravan, Santhanakrishnan, Mayor &amp; Steffert, reproduced from the <a href="https://doi.org/10.3390/a17110477">open paper</a> under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
   </div></div>
 </footer>
 <dialog aria-labelledby="viewer-title" aria-describedby="viewer-caption">

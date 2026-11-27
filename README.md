@@ -4,7 +4,7 @@
 
 I’m **Tahereh Vasei**, a PhD candidate in Electrical Engineering at New York Institute of Technology. I build EEG decoders and study what happens to their predictions when the hardware or the people being measured change. My work spans fixed-point signal processing, paired headset experiments, and learning across clinical cohorts.
 
-[Wearable motor imagery](projects/motor_imagery_bci/) · [Dry and gel electrodes](projects/dry_gel_harmonization/) · [Multi-cohort EEG](projects/cvae_gatv2/)
+[Wearable motor imagery](projects/motor_imagery_bci/) · [Dry and gel electrodes](projects/dry_gel_harmonization/) · [Multi-cohort EEG](projects/cvae_gatv2/) · [Saliency maps for TEAS](projects/teas_eegnet/)
 
 ## A wearable motor-imagery decoder
 
@@ -27,6 +27,16 @@ The same 35 people wore both headsets. Their spectra had a median within-person 
 I trained a conditional variational autoencoder to reconstruct EEG under a common cohort condition, then used a graph attention network to classify major depressive disorder. The study covered **817 participants in six cohorts**. Among the **403 held-out participants from the two cohorts containing both classes**, balanced accuracy increased from **67.3% to 77.7%**.
 
 [Read the modeling study](projects/cvae_gatv2/) · [Inspect the embeddings](assets/figures/cvae-umap.png)
+
+## Where does the model look?
+
+In a published study of brain responses to transcutaneous electroacupuncture stimulation (TEAS), EEGNet decoded the stimulation phases of 48 participants with accuracies above 92%. I used saliency maps to ask which electrodes the network relied on. The importance concentrated on seven frontal and temporal electrodes (Fp1, Fp2, Fz, F7, F8, T3, T4), and a classifier retrained on those seven alone performed close to the full 19-electrode montage.
+
+[![Topographic saliency maps for four TEAS frequencies, with frontal electrodes showing the highest importance.](assets/figures/teas-saliency.png)](assets/figures/teas-saliency.png)
+
+*Figure 5, Vasei et al., Algorithms (2024). Aggregated saliency for each stimulation frequency; warmer colors indicate higher electrode importance.*
+
+[Read the saliency study](projects/teas_eegnet/) · [Published paper](https://doi.org/10.3390/a17110477) · [Inspect the maps](assets/figures/teas-saliency.png)
 
 ---
 
