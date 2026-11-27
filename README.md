@@ -1,6 +1,6 @@
 # EEG and brain–computer interface research
 
-![Tahereh Vasei — EEG decoding and brain interfaces. At right, Figure 3a from the CVAE–GATv2 study maps the change in model confidence after masking each electrode.](assets/portfolio-cover.png)
+![Tahereh Vasei — EEG decoding and brain interfaces. Wearable hardware, headset transfer, and graph learning.](assets/portfolio-cover.png)
 
 I’m **Tahereh Vasei**, a PhD candidate in Electrical Engineering at New York Institute of Technology. I build EEG decoders and study what happens to their predictions when the hardware or the people being measured change. My work spans fixed-point signal processing, paired headset experiments, and learning across clinical cohorts.
 
@@ -20,13 +20,29 @@ I took a two-class motor-imagery decoder from signal-processing design to an FPG
 
 The same 35 people wore both headsets. Their spectra had a median within-person correlation of **0.932**, yet a classifier could identify the headset with **0.999 ROC AUC**. For a clinical EEG classification task, asymmetric alignment raised gel-to-dry transfer AUC from **0.549 to 0.742**. Reversing the transfer direction produced a **0.078 decrease** in AUC.
 
-[Read the paired-headset study](projects/dry_gel_harmonization/) · [Compare the spectra](assets/figures/dry-gel-spectra.png) · [See the gel-to-dry effects](assets/figures/dry-gel-transfer.png)
+[![Median dry and gel power spectra across the 35 participants.](assets/figures/dry-gel-spectra.png)](assets/figures/dry-gel-spectra.png)
 
-## Which EEG features carry across cohorts?
+*Median eyes-closed power spectra for the two headsets. Shading spans the interquartile range across participants.*
+
+[![Gel-to-dry harmonization effects on classification AUC.](assets/figures/dry-gel-transfer.png)](assets/figures/dry-gel-transfer.png)
+
+*Change in AUC relative to raw gel-to-dry transfer. Intervals are paired participant-bootstrap 95% intervals.*
+
+[Read the paired-headset study](projects/dry_gel_harmonization/)
+
+## Reference-conditioned CVAE harmonization for multi-cohort EEG classification
 
 I trained a conditional variational autoencoder to reconstruct EEG under a common cohort condition, then used a graph attention network to classify major depressive disorder. The study covered **817 participants in six cohorts**. Among the **403 held-out participants from the two cohorts containing both classes**, balanced accuracy increased from **67.3% to 77.7%**.
 
-[Read the modeling study](projects/cvae_gatv2/) · [Inspect the embeddings](assets/figures/cvae-umap.png)
+[![UMAP projections of EEG representations before and after CVAE harmonization, colored by cohort and by diagnosis.](assets/figures/cvae-umap.png)](assets/figures/cvae-umap.png)
+
+*Representations at three stages. The same observations are colored by source cohort (top) and by diagnosis (bottom); after harmonization the cohorts mix while the diagnosis structure remains.*
+
+[![Electrode-occlusion scalp map for the CVAE–GATv2 classifier.](assets/figures/cvae-scalp.png)](assets/figures/cvae-scalp.png)
+
+*Electrode occlusion: the mean decrease in classifier confidence when each electrode's input is masked.*
+
+[Read the modeling study](projects/cvae_gatv2/)
 
 ## Where does the model look?
 

@@ -148,12 +148,6 @@
       <p class="intro">I’m Tahereh Vasei, an electrical engineering PhD candidate. I design processors for motor-imagery EEG and study how changes in recording hardware and study populations affect what a model learns.</p>
       <a class="hero-link" href="#motor-imagery">Explore the studies <span aria-hidden="true">↓</span></a>
     </div>
-    <figure class="hero-figure">
-      <a class="hero-image" href="assets/figures/cvae-occlusion.png" data-figure data-caption="Revised CVAE manuscript, Figure 3. The scalp map shows mean loss of true-class confidence after masking each electrode’s input features. Intervals in the full figure are participant-bootstrap 95% confidence intervals.">
-        <img src="assets/figures/cvae-scalp.png" alt="Electrode-occlusion scalp map showing the decrease in classifier confidence when each electrode is masked. Open the full figure with confidence intervals.">
-      </a>
-      <figcaption><span class="fig-id">Cohort study · Figure 3a</span><p>Which electrodes influence the classifier?</p><a href="assets/figures/cvae-occlusion.png" data-figure data-caption="Revised CVAE manuscript, Figure 3. Mean changes in confidence with participant-bootstrap 95% intervals. This is a model-sensitivity analysis.">View the full figure and intervals</a></figcaption>
-    </figure>
   </section>
   <article class="study" id="motor-imagery" aria-labelledby="motor-title">
     <div class="study-head">
@@ -184,8 +178,8 @@
       <p class="study-desc">I compared a gel system and a dry headset on the same 35 participants. Their resting EEG spectra had similar shapes, yet a classifier could identify the recording device with an AUC of 0.999.</p>
     </div>
     <div class="pair">
-      <figure><a class="media" href="assets/figures/dry-gel-spectra.png" data-figure><img src="assets/figures/dry-gel-spectra.png" loading="lazy" alt="Median dry and gel power spectra and their interquartile bands across 35 participants."></a><figcaption class="caption"><strong>Figure 2 · Spectral agreement.</strong> Both devices captured the alpha peak. Shading gives the interquartile range across participants.</figcaption></figure>
-      <figure><a class="media" href="assets/figures/dry-gel-transfer.png" data-figure><img src="assets/figures/dry-gel-transfer.png" loading="lazy" alt="Forest plot of AUC changes from harmonization for gel-to-dry transfer."></a><figcaption class="caption"><strong>Figure 4 · Gel-to-dry harmonization effects.</strong> Points show changes in AUC relative to unaligned transfer. Intervals come from paired participant resampling.</figcaption></figure>
+      <figure><a class="media" href="assets/figures/dry-gel-spectra.png" data-figure><img src="assets/figures/dry-gel-spectra.png" loading="lazy" alt="Median dry and gel power spectra and their interquartile bands across 35 participants."></a><figcaption class="caption"><strong>Spectral agreement.</strong> Both devices captured the alpha peak. Shading gives the interquartile range across participants.</figcaption></figure>
+      <figure><a class="media" href="assets/figures/dry-gel-transfer.png" data-figure><img src="assets/figures/dry-gel-transfer.png" loading="lazy" alt="Forest plot of AUC changes from harmonization for gel-to-dry transfer."></a><figcaption class="caption"><strong>Gel-to-dry harmonization effects.</strong> Points show changes in AUC relative to unaligned transfer. Intervals come from paired participant resampling.</figcaption></figure>
     </div>
     <p class="finding">For past-month suicidal ideation classification, gel-to-dry AUC rose from <strong>0.549 to 0.742</strong> with asymmetric ComBat–CORAL alignment. In the reverse direction, the AUC change was <strong>−0.078</strong>. Paired 95% intervals for both changes included zero.</p>
   </article>
@@ -195,13 +189,14 @@
       <p class="study-desc">I trained a conditional variational autoencoder (CVAE) to reconstruct EEG under a common recording condition, then used a GATv2 graph classifier to distinguish depression from healthy controls. The full dataset contained 817 people and 32,987 EEG segments.</p>
     </div>
     <div class="cohort">
-      <figure><a class="media" href="assets/figures/cvae-umap.png" data-figure><img src="assets/figures/cvae-umap.png" loading="lazy" alt="Six UMAP panels showing the same 6,521 observations before harmonization, after reconstruction, and in classifier embeddings, colored by cohort or diagnosis."></a><figcaption class="caption"><strong>Figure 2 · Representations at three stages.</strong> The same 6,521 observations from 164 people are colored by source cohort (top) and diagnosis (bottom). Each column has its own projection.</figcaption></figure>
+      <figure><a class="media" href="assets/figures/cvae-umap.png" data-figure><img src="assets/figures/cvae-umap.png" loading="lazy" alt="Six UMAP panels showing the same 6,521 observations before harmonization, after reconstruction, and in classifier embeddings, colored by cohort or diagnosis."></a><figcaption class="caption"><strong>Representations at three stages.</strong> The same 6,521 observations from 164 people are colored by source cohort (top) and diagnosis (bottom). Each column has its own projection.</figcaption></figure>
       <div class="cohort-aside"><p class="table-label">Held-out evaluation</p><h3>What did the classifier retain?</h3>
         <table aria-label="Balanced accuracy by EEG input"><thead><tr><th scope="col">GATv2 input</th><th scope="col">Balanced accuracy</th></tr></thead>
         <tbody><tr><th scope="row">Unharmonized EEG</th><td>67.3%</td></tr><tr><th scope="row">Signal-level ComBat</th><td>51.4%</td></tr><tr><th scope="row">CVAE reconstruction</th><td>77.7%</td></tr></tbody></table>
         <p>Scores pool held-out predictions for 403 people in the two cohorts that included both depression and control participants.</p>
       </div>
     </div>
+    <figure><a class="media" href="assets/figures/cvae-occlusion.png" data-figure><img src="assets/figures/cvae-occlusion.png" loading="lazy" alt="Electrode-occlusion figure showing the mean decrease in classifier confidence when each electrode is masked, with participant-bootstrap intervals."></a><figcaption class="caption"><strong>Electrode occlusion.</strong> Mean decrease in true-class confidence after masking each electrode. Intervals are participant-bootstrap 95% confidence intervals.</figcaption></figure>
     <details><summary>What can I reproduce from this release?</summary><p class="caption">Reproducing the study metrics requires the original training pipeline, the frozen CVAE, and the clinical recordings, which are outside this release.</p></details>
   </article>
   <article class="study" id="teas" aria-labelledby="teas-title">
