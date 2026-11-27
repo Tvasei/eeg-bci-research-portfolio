@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f2">
+  <meta name="description" content="Tahereh Vasei’s research on wearable motor-imagery hardware, paired dry and gel EEG, and learning across EEG cohorts. Original figures and study results.">
+  <title>EEG &amp; BCI research · Tahereh Vasei</title>
+  <style>
+    :root{
+      color-scheme:light;
+      --paper:#f8f7f2;--white:#fff;--ink:#142c34;--mute:#475b60;
+      --teal:#006a60;--link:#075d78;--line:#ccd3cc;--soft:#e8eeea;
+      --serif:"Baskervville","Iowan Old Style","Palatino Linotype",Georgia,serif;
+      --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:20px}
+    body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+    a{color:var(--link);text-underline-offset:.23em;text-decoration-thickness:1px}
+    a:hover{text-decoration-thickness:2px;color:var(--teal)}
+    a:focus-visible,button:focus-visible{outline:3px solid #d17822;outline-offset:4px}
+    img{display:block;width:100%;height:auto}
+    .shell{width:min(1170px,calc(100% - 96px));margin-inline:auto}
+    .skip{position:absolute;top:0;left:0;transform:translateY(-130%);z-index:10;background:var(--white);padding:10px}
+    .skip:focus{transform:translateY(0)}
+    header{border-bottom:1px solid var(--line)}
+    header .shell{display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:76px}
+    .name{font:600 clamp(21px,2vw,27px)/1.1 var(--serif);letter-spacing:-.045em;color:var(--ink);text-decoration:none}
+    nav{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(14px,2.3vw,36px);font-size:14px}
+    nav a,.footer-link{color:var(--ink);text-decoration:none}
+    nav a:hover,.footer-link:hover{text-decoration:underline}
+    .nav-out{border-left:1px solid var(--line);padding-left:clamp(14px,2vw,28px)}
+    .hero{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(36px,6vw,94px);align-items:center;padding-block:clamp(46px,5.5vw,84px);border-bottom:1px solid var(--ink)}
+    .affiliation,.meta,.fig-id,.foot-brand,.table-label{font:600 12px/1.5 var(--sans);letter-spacing:.085em;text-transform:uppercase}
+    .affiliation,.meta{color:var(--teal);margin:0}
+    h1,h2,h3,p,figure,dl,dd{margin:0}
+    h1,h2,h3{font-family:var(--serif);font-weight:500}
+    h1{margin-block:18px 24px;max-width:12em;font-size:clamp(50px,5.75vw,84px);line-height:1.01;letter-spacing:-.06em;text-wrap:balance}
+    h1 em{color:var(--teal);font-weight:400}
+    .intro{max-width:47ch;color:#324b52;font-size:clamp(17px,1.38vw,21px);line-height:1.55}
+    .hero-link,.case-link{display:inline-flex;align-items:baseline;gap:.5em;font-size:15px;font-weight:600}
+    .hero-link{margin-top:24px}
+    .hero-figure{background:white;border:1px solid var(--line);border-top:3px solid var(--teal)}
+    .hero-image{display:block;padding:14px 16px 4px;margin:0 auto;width:min(100%,338px)}
+    .hero-image img{height:clamp(210px,17.5vw,270px);object-fit:contain}
+    .hero-figure figcaption{padding:15px 21px 18px;border-top:1px solid #e5e9e4}
+    .hero-figure figcaption p{margin:4px 0;color:var(--ink);font:500 22px/1.17 var(--serif);letter-spacing:-.025em}
+    .hero-figure figcaption a{font-size:13px}
+    .fig-id{color:var(--teal);font-size:11px;letter-spacing:.07em}
+    .study{padding-block:clamp(42px,5.5vw,82px);border-bottom:1px solid var(--line)}
+    .study:last-of-type{border:0}
+    .study-head{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);gap:clamp(30px,7vw,100px);align-items:end;margin-bottom:30px}
+    h2{margin-top:9px;font-size:clamp(38px,4.25vw,64px);line-height:1.03;letter-spacing:-.052em;text-wrap:balance}
+    .study-desc{max-width:58ch;color:#344c52}
+    .media{display:block;border:1px solid var(--line);background:var(--white);cursor:zoom-in}
+    .media:hover,.hero-image:hover{outline:2px solid var(--teal);outline-offset:2px}
+    .media img{object-fit:contain}
+    .wide-plot .media{padding:clamp(13px,2vw,28px)}
+    .wide-plot img{max-height:300px}
+    .caption{color:var(--mute);font-size:14px;line-height:1.5;margin-top:9px}
+    .caption strong{color:var(--ink);font-weight:650}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);list-style:none;padding:19px 0 20px;border-block:1px solid var(--line);margin:27px 0}
+    .metrics > div{padding-inline:clamp(16px,2.5vw,44px);border-left:1px solid var(--line)}
+    .metrics > div:first-child{padding-left:0;border:0}
+    .metrics dt{color:var(--mute);font-size:13px}
+    .metrics dd{font:500 clamp(30px,2.9vw,43px)/1.24 var(--serif);letter-spacing:-.042em;color:var(--teal)}
+    .study-links{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 26px;margin-top:21px}
+    .text-link{font-size:15px}
+    details{margin-top:13px}
+    summary{color:var(--link);font-size:15px;cursor:pointer;text-decoration:underline;text-underline-offset:.23em;width:fit-content}
+    details figure{max-width:830px;margin-top:16px}
+    .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,42px);margin-bottom:22px}
+    .pair .media{height:clamp(225px,24vw,330px);display:flex;padding:clamp(12px,1.5vw,24px)}
+    .pair .media img{height:100%;min-width:0}
+    .finding{background:var(--soft);border-left:3px solid var(--teal);padding:16px 22px;color:#22413e;font-size:16px;line-height:1.55}
+    .cohort{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(22px,4vw,58px);align-items:start}
+    .cohort .media{padding:12px}
+    h3{font-size:clamp(25px,2.1vw,33px);line-height:1.15;letter-spacing:-.03em}
+    .cohort-aside{padding:14px 0;border-top:2px solid var(--teal)}
+    .table-label{color:var(--teal);margin-bottom:9px}
+    table{width:100%;border-collapse:collapse;font-size:15px}
+    th,td{text-align:left;vertical-align:top;padding:10px 0;border-bottom:1px solid var(--line);line-height:1.32}
+    th{font-weight:500}td{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:650}
+    thead th{font-size:12px;font-weight:600;color:var(--mute)}thead th:last-child{text-align:right}
+    .cohort-aside table{margin-top:12px}
+    .cohort-aside p:last-child{font-size:14px;line-height:1.45;color:var(--mute);margin-top:13px}
+    footer{background:#142f36;color:#e5ece6;padding-block:30px 32px}
+    footer .shell{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
+    footer p{font-size:13px;line-height:1.5;max-width:82ch}
+    footer p+p{margin-top:6px}
+    footer a,.footer-link{color:#e4f7ec}
+    footer a:hover,.footer-link:hover{color:#fff}
+    .foot-brand{font-size:13px;white-space:nowrap}
+    dialog{border:0;padding:16px 22px 22px;max-width:min(96vw,1400px);width:max-content;max-height:95vh;margin:auto;color:var(--ink);background:#fff}
+    dialog::backdrop{background:#0b2026d9}
+    dialog img{height:auto;width:auto;max-width:100%;max-height:74vh;object-fit:contain;margin:auto}
+    dialog .dialog-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:10px;font-size:14px;color:var(--mute)}
+    dialog button{padding:6px 14px;border:1px solid var(--line);color:var(--ink);font:inherit;background:var(--paper);cursor:pointer}
+    dialog p{margin-top:10px;font-size:14px;max-width:100ch}
+    @media(max-width:880px){
+      .shell{width:calc(100% - 56px)}.hero{gap:25px}
+      .study-head{gap:28px}.cohort{grid-template-columns:1.1fr .9fr}
+      nav{gap:16px}.nav-out{padding-left:15px}
+    }
+    @media(max-width:700px){
+      html{scroll-padding-top:12px}
+      .shell{width:calc(100% - 36px)}
+      header .shell{min-height:0;align-items:flex-start;flex-direction:column;gap:11px;padding-block:13px}
+      nav{width:100%;gap:8px 18px;font-size:13px}.nav-out{border:0;padding:0}
+      .hero,.study-head,.cohort,.pair{grid-template-columns:1fr}
+      .hero{gap:25px;padding-block:33px}.hero-figure{max-width:520px}
+      .hero-image{width:100%}.hero-image img{height:220px}
+      h1{font-size:clamp(45px,9.5vw,65px);max-width:13ch;margin-block:12px 18px;text-wrap:initial}
+      .study-head{gap:15px;align-items:start;margin-bottom:20px}
+      .pair .media{height:auto;min-height:0}.pair .media img{height:auto;max-height:330px}
+      .cohort-aside{padding-top:14px}.pair{gap:20px}
+      .metrics{gap:0}.metrics > div{padding:0 10px}.metrics dt{font-size:12px}.metrics dd{font-size:clamp(25px,6vw,36px)}
+      .finding{padding:14px 17px;font-size:15px}
+      footer .shell{flex-direction:column;gap:12px}
+    }
+    @media(max-width:400px){
+      nav{gap:6px 13px}.metrics{grid-template-columns:1fr;gap:9px}
+      .metrics > div,.metrics > div:first-child{padding:0;border:0;display:flex;gap:16px;align-items:baseline;justify-content:space-between}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.shell{width:100%}.hero{gap:20px}.study{padding-block:24px}header nav,.hero-link,.study-links,footer,dialog{display:none}.media,figure,table{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to research</a>
+<header id="top">
+  <div class="shell">
+    <a href="#top" class="name">Tahereh Vasei</a>
+    <nav aria-label="Research portfolio">
+      <a href="#motor-imagery">Motor imagery</a>
+      <a href="#headsets">Headset transfer</a>
+      <a href="#cohorts">Cohort harmonization</a>
+      <a href="https://github.com/Tvasei" class="nav-out">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="shell">
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <p class="affiliation">EEG research · New York Institute of Technology</p>
+      <h1 id="hero-title">EEG decoding across <em>hardware, headsets, and cohorts.</em></h1>
+      <p class="intro">I’m Tahereh Vasei, an electrical engineering PhD candidate. I design processors for motor-imagery EEG and study how changes in recording hardware and study populations affect what a model learns.</p>
+      <a class="hero-link" href="#motor-imagery">Explore the studies <span aria-hidden="true">↓</span></a>
+    </div>
+    <figure class="hero-figure">
+      <a class="hero-image" href="assets/figures/cvae-occlusion.png" data-figure data-caption="Revised CVAE manuscript, Figure 3. The scalp map shows mean loss of true-class confidence after masking each electrode’s input features. Intervals in the full figure are participant-bootstrap 95% confidence intervals.">
+        <img src="assets/figures/cvae-scalp.png" alt="Electrode-occlusion scalp map showing the decrease in classifier confidence when each electrode is masked. Open the full figure with confidence intervals.">
+      </a>
+      <figcaption><span class="fig-id">Cohort study · Figure 3a</span><p>Which electrodes influence the classifier?</p><a href="assets/figures/cvae-occlusion.png" data-figure data-caption="Revised CVAE manuscript, Figure 3. Mean changes in confidence with participant-bootstrap 95% intervals. This is a model-sensitivity analysis.">View the full figure and intervals</a></figcaption>
+    </figure>
+  </section>
+  <article class="study" id="motor-imagery" aria-labelledby="motor-title">
+    <div class="study-head">
+      <div><p class="meta">Hardware design · Published in IET, 2024</p><h2 id="motor-title">A wearable motor-imagery decoder</h2></div>
+      <p class="study-desc">EEG arrives slowly enough for several channels to share one digital filter. For my master’s research, I used that interval to reduce the circuitry needed to filter, extract features, and classify two imagined movements.</p>
+    </div>
+    <figure class="wide-plot">
+      <a class="media" href="assets/figures/bci-architecture.png" data-figure>
+        <img src="assets/figures/bci-architecture.png" loading="lazy" alt="Published system schematic showing multiple EEG channels sharing a filtering stage before spatial filtering, variance estimation, and classification.">
+      </a>
+      <figcaption class="caption"><strong>Figure 17 · Shared processing path.</strong> The multiplexer feeds successive EEG channels to the shared filter. Spatial projection, variance estimation, and a linear SVM complete the decoder.</figcaption>
+    </figure>
+    <dl class="metrics">
+      <div><dt>Offline accuracy · 7 participants</dt><dd>77.4%</dd></div>
+      <div><dt>Power · 45 nm synthesis</dt><dd>4 mW</dd></div>
+      <div><dt>Area · 45 nm synthesis</dt><dd>0.25 mm²</dd></div>
+    </dl>
+    <p class="study-desc">I evaluated the two-class decoder offline using five-fold cross-validation and prototyped the RTL on a Xilinx Virtex-7 FPGA.</p>
+    <details>
+      <summary>See how spatial filtering changes the EEG features</summary>
+      <figure><a class="media" href="assets/figures/bci-csp.png" data-figure><img loading="lazy" src="assets/figures/bci-csp.png" alt="Scatter plots comparing two raw EEG channels to the two transformed common spatial pattern features."></a><figcaption class="caption"><strong>Figure 6 · Common spatial patterns.</strong> The two classes show different variance patterns after projection onto the learned spatial filters.</figcaption></figure>
+    </details>
+    <div class="study-links"><a class="case-link" href="https://doi.org/10.1049/2024/5596468">Read the published paper</a></div>
+  </article>
+  <article class="study" id="headsets" aria-labelledby="headsets-title">
+    <div class="study-head">
+      <div><p class="meta">Paired EEG recordings · Research manuscript</p><h2 id="headsets-title">From gel to dry electrodes</h2></div>
+      <p class="study-desc">I compared a gel system and a dry headset on the same 35 participants. Their resting EEG spectra had similar shapes, yet a classifier could identify the recording device with an AUC of 0.999.</p>
+    </div>
+    <div class="pair">
+      <figure><a class="media" href="assets/figures/dry-gel-spectra.png" data-figure><img src="assets/figures/dry-gel-spectra.png" loading="lazy" alt="Median dry and gel power spectra and their interquartile bands across 35 participants."></a><figcaption class="caption"><strong>Figure 2 · Spectral agreement.</strong> Both devices captured the alpha peak. Shading gives the interquartile range across participants.</figcaption></figure>
+      <figure><a class="media" href="assets/figures/dry-gel-transfer.png" data-figure><img src="assets/figures/dry-gel-transfer.png" loading="lazy" alt="Forest plot of AUC changes from harmonization for gel-to-dry transfer."></a><figcaption class="caption"><strong>Figure 4 · Gel-to-dry harmonization effects.</strong> Points show changes in AUC relative to unaligned transfer. Intervals come from paired participant resampling.</figcaption></figure>
+    </div>
+    <p class="finding">For past-month suicidal ideation classification, gel-to-dry AUC rose from <strong>0.549 to 0.742</strong> with asymmetric ComBat–CORAL alignment. In the reverse direction, the AUC change was <strong>−0.078</strong>. Paired 95% intervals for both changes included zero.</p>
+  </article>
+  <article class="study" id="cohorts" aria-labelledby="cohorts-title">
+    <div class="study-head">
+      <div><p class="meta">Doctoral research · Manuscript under review</p><h2 id="cohorts-title">Learning across six EEG cohorts</h2></div>
+      <p class="study-desc">I trained a conditional variational autoencoder (CVAE) to reconstruct EEG under a common recording condition, then used a GATv2 graph classifier to distinguish depression from healthy controls. The full dataset contained 817 people and 32,987 EEG segments.</p>
+    </div>
+    <div class="cohort">
+      <figure><a class="media" href="assets/figures/cvae-umap.png" data-figure><img src="assets/figures/cvae-umap.png" loading="lazy" alt="Six UMAP panels showing the same 6,521 observations before harmonization, after reconstruction, and in classifier embeddings, colored by cohort or diagnosis."></a><figcaption class="caption"><strong>Figure 2 · Representations at three stages.</strong> The same 6,521 observations from 164 people are colored by source cohort (top) and diagnosis (bottom). Each column has its own projection.</figcaption></figure>
+      <div class="cohort-aside"><p class="table-label">Held-out evaluation</p><h3>What did the classifier retain?</h3>
+        <table aria-label="Balanced accuracy by EEG input"><thead><tr><th scope="col">GATv2 input</th><th scope="col">Balanced accuracy</th></tr></thead>
+        <tbody><tr><th scope="row">Unharmonized EEG</th><td>67.3%</td></tr><tr><th scope="row">Signal-level ComBat</th><td>51.4%</td></tr><tr><th scope="row">CVAE reconstruction</th><td>77.7%</td></tr></tbody></table>
+        <p>Scores pool held-out predictions for 403 people in the two cohorts that included both depression and control participants.</p>
+      </div>
+    </div>
+    <details><summary>What can I reproduce from this release?</summary><p class="caption">Reproducing the study metrics requires the original training pipeline, the frozen CVAE, and the clinical recordings, which are outside this release.</p></details>
+  </article>
+</main>
+<footer>
+  <div class="shell"><div><p class="foot-brand">Tahereh Vasei</p><p>Research in EEG decoding and wearable computing</p></div><div>
+    <p>BCI figures © 2024 Vasei, Saber, Nahvy &amp; Navabi, reproduced from the <a href="https://doi.org/10.1049/2024/5596468">open paper</a> under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Figures cropped to fit.</p>
+    <p>Dry/gel and CVAE figures from manuscripts by Tahereh Vasei, Maryam Ravan &amp; Gary Hasey.</p>
+  </div></div>
+</footer>
+<dialog aria-labelledby="viewer-title" aria-describedby="viewer-caption">
+  <div class="dialog-top"><span id="viewer-title">Research figure</span><button type="button">Close</button></div>
+  <img alt=""><p id="viewer-caption"></p>
+</dialog>
+<script>
+  const viewer = document.querySelector('dialog');
+  if (viewer && typeof viewer.showModal === 'function') {
+    const largeImage = viewer.querySelector('img');
+    const caption = viewer.querySelector('#viewer-caption');
+    let previousLink;
+    document.querySelectorAll('a[data-figure]').forEach(link => {
+      link.addEventListener('click', event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        event.preventDefault();
+        previousLink = link;
+        largeImage.src = link.href;
+        largeImage.alt = link.querySelector('img')?.alt || link.textContent.trim();
+        caption.textContent = link.dataset.caption || link.closest('figure')?.querySelector('figcaption')?.textContent || '';
+        viewer.showModal();
+      });
+    });
+    viewer.querySelector('button').addEventListener('click', () => viewer.close());
+    viewer.addEventListener('click', event => { if (event.target !== viewer) return; const r = viewer.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) viewer.close(); });
+    viewer.addEventListener('close', () => previousLink?.focus());
+  }
+</script>
+</body>
+</html>
